@@ -1,17 +1,15 @@
-"""Hola mundo con programación orientada a objetos."""
+"""Hola mundo con programaci?n orientada a objetos.
+
+Este archivo se mantiene como ejemplo sencillo/r?pido.
+Para una estructura m?s ?de proyecto?, mira `src/poo_basico/`.
+"""
+
+from src.poo_basico.saludo import Saludo
 
 
-class Saludo:
-    """Representa un mensaje de saludo."""
-
-    def __init__(self, mensaje: str = "Hola mundo") -> None:
-        self._mensaje = mensaje
-
-    def mostrar(self) -> None:
-        """Muestra el mensaje por consola."""
-        print(self._mensaje)
+def main() -> None:
+    Saludo().mostrar()
 
 
 if __name__ == "__main__":
-    saludo = Saludo()
-    saludo.mostrar()
+    main()
