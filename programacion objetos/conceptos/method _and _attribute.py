@@ -1,6 +1,7 @@
 ## metodo y atributo ##
 ## metodo es una funcion que pertenece al objeto ##
 ## atributo es una variable que pertenece al objeto ##
+from typing import Self
 from clases import Persona
 from clases import Automovil
 from clases import Laptop
@@ -8,9 +9,9 @@ from clases import Laptop
 
 class Persona:
     def __init__(self, nombre, apellido, edad):
-        self.nombre= nombre
-        self.apellido= apellido
-        self.edad= edad
+        Self.nombre= nombre
+        Self.apellido= apellido
+        Self.edad= edad
 
     def saludar(self):
         return f"Hola, me llamo {self.nombre} {self.apellido} y tengo {self.edad} años."
