@@ -10,7 +10,7 @@ class Persona:
     def saludar(self):
         return f"Hola, me llamo {self.nombre} {self.apellido} y tengo {self.edad} años."
 
-    def cumplir_anios(self):
+    def cumplir_años(self):
         self.edad += 1
         return f"Feliz cumpleaños! Ahora tengo {self.edad} años."
 
