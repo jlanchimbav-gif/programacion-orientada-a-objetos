@@ -49,6 +49,9 @@ else:
     factorial=factorial*contador                                                #factorial=factorial*contador         factorial=6*4
     contador=contador+1                                                         #contador=contador+1                  contador= 4+1
   print(f"El factorial de {numero} es {factorial}")
+  
+
+  
 
 
 
