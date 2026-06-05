@@ -1,16 +1,16 @@
-                                                           # con def palabra reservada del sistema creamos una funcion ##
+                                                           # con def  creamos una funcion con el nombre contador_palabras ##
 def contador_palabras():
                                                            # 1 solicitamos al usuario una frase
     frase = input("Por favor, ingresa una frase: ")
-                                                           # 2 Procesar la frase: convertir a minúsculas y eliminar puntuación con excepcion de espacios.
+                                                           # 2 Procesar la frase.
     import re                                              #Se convierte toda la frase a minúsculas para ignorar mayúsculas/minúsculas.
     palabras = re.findall(r'\b[\w-]+\b', frase.lower())    #Se usa re.findall con el patrón \b[\w-]+\b para extraer palabras,
-                                                           #ignorando puntuación como comas y puntos .
+                                                           #ignora las  comas y puntos .
 
                                             # 3 Contar ocurrencias de cada palabra
     contador = {}                           #Se crea un diccionario (contador) donde las claves son las palabras y los valores sus conteos. 
     for palabra in palabras:
-        if palabra in contador:             #verifica que la frese no ete vacia y que contenga al menos una palabra 
+        if palabra in contador:             #verifica que la frese no este vacia y que contenga al menos una palabra 
             contador[palabra] += 1          # Si no hay palabras en el diccionario, las funciones max() o min() lanzan una excepción porque intentan 
                                              #acceder a claves inexistente
         else:
