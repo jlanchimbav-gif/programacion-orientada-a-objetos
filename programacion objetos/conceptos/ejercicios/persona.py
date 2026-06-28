@@ -52,7 +52,7 @@ def pedir_dato(mensaje: str, validador) -> str:
             if validador(dato):
                 return dato
         except ValueError as e:
-            print(f"❌ {e}")
+            print(f" {e}")
 
 
 if __name__ == "__main__":
@@ -70,7 +70,7 @@ if __name__ == "__main__":
     # Cambio de email con validación
     nuevo_email = pedir_dato("Ingresa tu nuevo email: ", Validador.email_valido)
     persona.cambiar_email(nuevo_email)
-    print(f"📧 Email actualizado a: {persona.email}")
+    print(f" Email actualizado a: {persona.email}")
 
 
     
