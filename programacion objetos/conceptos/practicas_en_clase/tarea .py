@@ -7,34 +7,82 @@ class Estudiante:
     self.apellido=apellido
     self.asignatura=asignatura
     self.nota=[]
-  #Método Analizador para ingresar notas
-  def ingresar_notas(self):
-    #Validar la cantidad de notas
+# métodos para validar cada atributo al ingresarlo
+  @staticmethod
+  def validar_cedula(cedula):
+    if not cedula.isdigit() or len(cedula) != 10:
+      print("Error: La cédula debe tener 10 dígitos numéricos")
+      return False
+    return True
+
+  @staticmethod
+  def validar_nombre(nombre):
+    if not nombre.strip():
+      print("Error: El nombre no puede estar vacío")
+      return False
+    if not all(c.isalpha() or c.isspace() for c in nombre):
+      print("Error: El nombre solo puede contener letras")
+      return False
+    if len(nombre.strip()) <= 1:
+      print("Error: El nombre no puede ser una sola letra")
+      return False
+    return True
+
+  @staticmethod
+  def validar_apellido(apellido):
+    if not apellido.strip():
+      print("Error: El apellido no puede estar vacío")
+      return False
+    if not all(c.isalpha() or c.isspace() for c in apellido):
+      print("Error: El apellido solo puede contener letras")
+      return False
+    return True
+
+  @staticmethod
+  def validar_asignatura(asignatura):
+    if not asignatura.strip():
+      print("Error: La asignatura no puede estar vacía")
+      return False
+    return True
+#metodo para vadilar notas 
+  @staticmethod
+  def validar_cantidad_notas(cantidad):
+    if cantidad <= 3:
+      print("La cantidad de notas debe ser mayor a 3")
+      return False
+    return True
+
+  @staticmethod
+  def validar_nota(nota):
+    if nota < 0 or nota > 100:
+      print("La nota debe estar en el rango de 0 a 100")
+      return False
+    return True
+
+  @staticmethod
+  def recopilar_notas():
+    notas_temp = []
     while True:
       try:
         cantidad=int(input("Ingrese la cantidad de notas (mayor a 3): "))
-        #Verificar que la cantidad de notas sea mayor a 3
-        if cantidad>3:
-          #break permite salir del ciclo repetitivo
+        if Estudiante.validar_cantidad_notas(cantidad):
           break
-        else:
-          print("La cantidad de notas debe ser mayor a 3")
       except ValueError:
         print("Error: Valor inválido")
-    #Bucle para solicitar las notas del alumno
     for i in range(cantidad):
       while True:
         try:
-          nota=float(input("Ingrese la nota del estudiante (del 0 al 100)"))
-          #Verificar si la nota ingresada está en un rango de 0 a 100
-          if nota>=0 and nota<=100:
-            #Se almacena en la lista nota
-            self.nota.append(nota)
+          nota=float(input("Ingrese la nota del estudiante (del 0 al 100): "))
+          if Estudiante.validar_nota(nota):
+            notas_temp.append(nota)
             break
-          else:
-            print("La nota debe estar en el rango de 0 a 100")
         except ValueError:
           print("Error: Valor inválido")
+    return notas_temp
+
+  #Método Analizador para ingresar notas
+  def ingresar_notas(self):
+    self.nota = Estudiante.recopilar_notas()
   #Crear un método para calcular el promedio de las notas
   def calcular_promedio(self):
     if not self.nota:
@@ -53,6 +101,9 @@ class Estudiante:
       return "Reprobado"
   #Método para mostrar la información del estudiante
   def mostrar_informacion(self):
+    if not self.nota:
+      print(f"Error: {self.nombre} {self.apellido} no tiene notas registradas")
+      return
     promedio=self.calcular_promedio()
     estado=self.estado_estudiante()
     print("***Información estudiante ****")
@@ -77,16 +128,27 @@ def menu():
       print("Error: Valor inválido")
       continue
     if opcion==1:
-      #Solicitamos la información del estudiante
-      cedula=input("Ingrese la cédula del estudiante: ")
-      nombre=input("Ingrese el nombre del estudiante: ")
-      apellido=input("Ingrese el apellido del estudiante: ")
-      asignatura=input("Ingrese la asignatura del estudiante: ")
-      #Crear un objeto de la clase estudiante
+      while True:
+        cedula=input("Ingrese la cédula del estudiante: ")
+        if Estudiante.validar_cedula(cedula):
+          break
+      while True:
+        nombre=input("Ingrese el nombre del estudiante: ")
+        if Estudiante.validar_nombre(nombre):
+          break
+      while True:
+        apellido=input("Ingrese el apellido del estudiante: ")
+        if Estudiante.validar_apellido(apellido):
+          break
+      while True:
+        asignatura=input("Ingrese la asignatura del estudiante: ")
+        if Estudiante.validar_asignatura(asignatura):
+          break
+      notas=Estudiante.recopilar_notas()
       objeto_estudiante=Estudiante(cedula,nombre,apellido,asignatura)
-      objeto_estudiante.ingresar_notas()
-      #Creando una lista de objetos
+      objeto_estudiante.nota=notas
       estudiantes.append(objeto_estudiante)
+      print("Estudiante registrado correctamente")
     elif opcion==2:
       if not estudiantes:
         print("No hay estudiantes registrados")
