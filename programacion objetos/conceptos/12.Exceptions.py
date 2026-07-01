@@ -1,4 +1,4 @@
-## Exceptions##
+## Raise Exceptions##
 ## son errores que ocurren durante la ejecucion del programa ##
 ## se utilizan para manejar errores y evitar que el programa se detenga ##
 
